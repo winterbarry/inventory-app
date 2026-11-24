@@ -39,7 +39,7 @@
 
         <div class="overview-card">
           <h3>TOTAL CATEGORIES</h3>
-          <p class="overview-number">8</p>
+          <p class="overview-number"><%= categories.length %></p>
           <span>Active categories</span>
         </div>
 
@@ -64,122 +64,45 @@
       </a>
     </section>
 
-    <!-- Category Cards -->
     <section class="category-grid">
 
-      <div class="category-card">
-        <h3>FRUITS & VEGETABLES</h3>
-        <p class="category-description">
-          Fresh fruits and vegetables
-        </p>
-        <p class="product-count">25 Products</p>
-
-        <a href="/categories/1" class="btn btn-view">
-          View Category
-        </a>
-
-        <div class="category-actions">
-          <a href="/categories/1/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/1/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
-        </div>
-      </div>
+      <% categories.forEach(category => { %>
 
       <div class="category-card">
-        <h3>DAIRY PRODUCTS</h3>
-        <p class="category-description">
-          Milk, cheese and other dairy
-        </p>
-        <p class="product-count">18 Products</p>
 
-        <a href="/categories/2" class="btn btn-view">
-          View Category
-        </a>
+        <h3><%= category.name %></h3>
+
+        <p class="category-description">
+          <%= category.description %>
+        </p>
+
+        <p class="product-count">0 Products</p>
 
         <div class="category-actions">
-          <a href="/categories/2/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/2/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
+
+          <a href="/categories/<%= category.id %>" class="btn btn-view">
+            View Category
+          </a>
+
+          <!-- ? -->
+          <a href="/categories/<%= category.id %>/edit" class="btn btn-edit">
+            Edit
+          </a>
+
+          <!-- ? -->
+          <form action="/categories/<%= category.id %>/delete" method="POST" onsubmit="return confirm('Are you sure you want to delete this category?');">
+
+            <button type="submit" class="btn btn-delete">
+              Delete
+            </button>
+
           </form>
+
         </div>
+
       </div>
 
-      <div class="category-card">
-        <h3>MEAT & POULTRY</h3>
-        <p class="category-description">
-          Fresh meat and poultry
-        </p>
-        <p class="product-count">15 Products</p>
-
-        <a href="/categories/3" class="btn btn-view">
-          View Category
-        </a>
-
-        <div class="category-actions">
-          <a href="/categories/3/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/3/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <h3>BEVERAGES</h3>
-        <p class="category-description">
-          Drinks and refreshments
-        </p>
-        <p class="product-count">20 Products</p>
-
-        <a href="/categories/4" class="btn btn-view">
-          View Category
-        </a>
-
-        <div class="category-actions">
-          <a href="/categories/4/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/4/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <h3>BAKERY</h3>
-        <p class="category-description">
-          Bread, pastries and snacks
-        </p>
-        <p class="product-count">12 Products</p>
-
-        <a href="/categories/5" class="btn btn-view">
-          View Category
-        </a>
-
-        <div class="category-actions">
-          <a href="/categories/5/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/5/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="category-card">
-        <h3>CANNED FOODS</h3>
-        <p class="category-description">
-          Canned and preserved foods
-        </p>
-        <p class="product-count">10 Products</p>
-
-        <a href="/categories/6" class="btn btn-view">
-          View Category
-        </a>
-
-        <div class="category-actions">
-          <a href="/categories/6/edit" class="btn btn-edit">Edit</a>
-          <form action="/categories/6/delete" method="POST">
-            <button type="submit" class="btn btn-delete">Delete</button>
-          </form>
-        </div>
-      </div>
+      <% }) %>
 
     </section>
 

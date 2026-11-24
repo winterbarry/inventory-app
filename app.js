@@ -3,8 +3,13 @@ const path = require("path");
 
 const app = express();
 
+const CategoryManager = require("./storages/categoryManager");
+
 // Import category router
 const categoryRouter = require("./routes/categoryRouter");
+
+// Create CategoryManager object
+const categoryManager = new CategoryManager();
 
 // Set EJS as the view engine
 app.set("view engine", "ejs");
@@ -19,11 +24,15 @@ app.use(express.urlencoded({ extended: true }));
 
 // Dashboard route
 app.get("/", (req, res) => {
-  res.render("index");
+  const categories = categoryManager.getAllCategories();
+
+  res.render("index", {
+    categories: categories,
+  });
 });
 
-// category routes
-app.use("/categories", categoryRouter);
+// Category routes
+app.use("/categories", categoryRouter(categoryManager));
 
 // Start server
 const PORT = 3000;
