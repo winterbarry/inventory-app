@@ -1,22 +1,17 @@
 const express = require("express");
+
 const router = express.Router();
 
+const categoryController = require("../controllers/categoryController");
+
 module.exports = (categoryManager) => {
-  router.get("/new", (req, res) => {
-    res.render("categories/new");
-  });
+  const controller = categoryController(categoryManager);
 
-  // Handle new category submission
-  router.post("/", (req, res) => {
-    const { name, description } = req.body;
+  // Display new category form
+  router.get("/new", controller.showNewCategoryForm);
 
-    categoryManager.addCategory(name, description);
-
-    console.log(name);
-    console.log(description);
-
-    res.redirect("/");
-  });
+  // Handle category submission
+  router.post("/", controller.addCategory);
 
   return router;
 };
