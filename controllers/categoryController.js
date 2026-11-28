@@ -31,8 +31,30 @@ module.exports = (categoryManager) => {
     }
   };
 
+  //Display individual categories
+  const showCategory = async (req, res) => {
+    try {
+      const id = req.params.id;
+
+      const category = await categoryManager.getCategoryById(id);
+
+      if (!category) {
+        return res.status(404).send("Category not found");
+      }
+
+      // render category details page
+      res.render("categories/view", {
+        category: category,
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send("Error retrieving category");
+    }
+  };
+
   return {
     showNewCategoryForm,
     addCategory,
+    showCategory,
   };
 };

@@ -13,5 +13,8 @@ module.exports = (categoryManager) => {
   // Handle category submission
   router.post("/", controller.addCategory);
 
+  // Display individual category
+  router.get("/:id", controller.showCategory);
+
   return router;
 };

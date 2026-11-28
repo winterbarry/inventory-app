@@ -1,0 +1,49 @@
+<div class="category-details">
+
+  <!-- Category name -->
+  <h1><%= category.name %></h1>
+
+  <!-- Category description -->
+  <div class="category-description">
+
+    <h3>Category Description</h3>
+
+    <p>
+      <%= category.description || "No description available." %>
+    </p>
+
+  </div>
+
+  <!-- Items table placeholder -->
+  <div class="category-items">
+
+    <h3>Items in this Category</h3>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td colspan="3">
+            Items will appear here.
+          </td>
+        </tr>
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <!-- Back to homepage -->
+  <a href="/">
+    <button type="button">Back to Homepage</button>
+  </a>
+
+</div>
